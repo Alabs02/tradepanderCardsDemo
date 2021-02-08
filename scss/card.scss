@@ -1,0 +1,280 @@
+// Reusable variables
+$brandGreen: #0cb870;
+$brandBlue:#100ba3;
+$brandBrown: #de6f43;
+$textColor: #212121;
+$kPadding: 1rem;
+
+$textSize: 1.15rem;
+$titleSize: 1.2rem;
+$heading: 1.6rem;
+
+@mixin boxShadow($x, $y, $blur, $color, $opaq) {
+    box-shadow: $x $y $blur rgba($color: $color, $alpha: $opaq);
+}
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    list-style-type: none;
+    text-decoration: 0;
+}
+
+html, body {
+    width: 100%;
+    height: 100%;
+    font-family: 'Nunito', sans-serif;
+}
+
+.transition {
+    -webkit-transition: all 0.1s 0s ease;
+    -moz-transition: all 0.1s 0s ease;
+    -o-transition: all 0.1s 0s ease;
+    transition: all 0.1s 0s ease;
+}
+
+.row {
+    width: 100%;
+    height: 100vh;
+    // border: 1px solid red;
+
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    // flex-wrap: wrap;
+}
+
+.card {
+    // border: 1px solid green;
+
+    padding: 1rem;
+    border-radius: 1rem;
+    margin-bottom: 1rem; 
+    // overflow: hidden;
+    @include boxShadow(0, 5px, 10px, $textColor, 0.2);
+    @extend .transition;
+
+    &:hover {
+        @include boxShadow(0, 5px, 10px, $textColor, 0.3);
+    }
+
+    &__header {
+        // border: 1px solid blue;
+
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        margin-bottom: 1rem;
+
+        .section  {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            padding-top: .4rem;
+        }
+
+        .media {
+            height: 3.1rem;
+            width: 3.1rem;
+            border-radius: .5rem;
+
+            // border: 1px solid crimson;
+
+            background: $brandGreen;
+            position: relative;
+            overflow: hidden;
+            @include boxShadow(0, 4px, 8px, $textColor, 0.1);
+
+            &::before {
+                // border: 1px solid purple;
+                content: "";
+
+                position: absolute;
+                top: 0;
+                right: 0;
+
+                width: 1.6rem;
+                height: 1.6rem;
+                background: lighten($color: $brandGreen, $amount: 10);
+                border-radius: 50%;
+                transform: translateY(-.1rem);
+                margin-right: -.1rem;
+                
+            }
+
+            &::after {
+                // border: 1px solid purple;
+                content: "";
+
+                position: absolute;
+                bottom: 0;
+                left: 0;
+
+                width: 1.6rem;
+                height: 1.4rem;
+                background: lighten($color: $brandGreen, $amount: 10);
+                border-bottom-left-radius: .8rem;
+                transform: translateY(.2rem);
+                margin-left: -.1rem;
+            }
+        }
+
+        .group {
+            margin-left: 1rem;
+            display: flex;
+            flex-direction: column;
+            line-height: 25px;
+            // border: 1px solid red;
+        }
+
+        .tag {
+            background-color: lighten($color: $brandBlue, $amount: 10);
+            padding: .4rem .8rem;
+            border-radius: 1rem;
+
+            font-size: .4rem;
+            text-transform: uppercase;
+            color: #fff;
+            font-weight: bold;
+            letter-spacing: 1.5pt;
+            user-select: none;
+        }
+    }
+
+    &__title {
+        text-transform: capitalize;
+        font-size: $titleSize;
+        font-weight: 600;
+        color: $textColor;
+    }
+
+    &__subtitle {
+        color: lighten($color: $textColor, $amount: 10);
+        font-size: small;
+
+        display: flex;
+        align-items: flex-start;
+        font-family: 'Open Sans', sans-serif;
+        font-weight: 200;
+
+
+        div[name=price] {
+            font-weight: 700;
+            font-size: 1.5rem;
+            color: darken($color: $textColor, $amount: 2);
+        }
+
+        span {
+            color: #9E9E9E;
+            transform: translateY(.4rem);
+            font-size: .6rem;
+        }
+    } 
+
+    &__body {
+        margin: 1rem 0;
+    }
+}
+
+.list {
+    // border: 1px solid red;
+    &:not(:last-child) {
+        margin-bottom: 0rem !important;
+    }
+
+    &__item {
+        // border: 1px solid green;    
+
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        text-transform: capitalize;
+        margin-bottom: .2rem;
+
+
+        strong {
+            // border: 1px solid purple;
+            width: 22%;
+            font-family: 'Open Sans', sans-serif;
+            color: lighten($color: $textColor, $amount: 5);
+        }
+    }
+
+    &__group {
+        display: flex;
+        align-items: center;
+
+        span {
+            margin-left: .5rem;
+            color: #424242;
+        }
+    }
+
+    &__disc {
+        width: 1rem;
+        height: 1rem;
+        color: #757575;
+    }
+}
+
+.divider {
+    background: rgba($color: #E0E0E0, $alpha: 0.8);
+    height: 1px;
+    @include boxShadow(0, 2px, 4px, #BDBDBD, 0.2);
+}
+
+.btn {
+    width: 100%;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    border-radius: 8px;
+    background: $brandBlue;
+    color: #fff;
+
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    padding: .5rem 1rem;
+    @include boxShadow(0, 5px, 10px, $textColor, 0.2);
+
+    span {
+        text-transform: capitalize;
+        // border: 1px solid red;
+        font-size: 1.2rem;
+        letter-spacing: .5pt;
+        margin-right: 1rem;
+    }
+
+    &__icon {
+        width: 1.2rem;
+        height: 1.2rem;
+        // border: 1px solid blue; 
+    }
+
+    &:hover {
+        transform: scale(1.01);
+        background: lighten($color: $brandBlue, $amount: 5);
+        @include boxShadow(0, 5px, 20px, $textColor, 0.2);
+    }
+}
+@media (min-width: 620px) {
+    body {
+        display: grid;
+        place-content: center;
+        place-items: center;
+    }
+
+    .row {
+        flex-direction: row;
+        flex-wrap: wrap;
+
+        justify-content: flex-start;
+    }
+
+    .card {
+        margin-right: 1rem;
+    }
+}
